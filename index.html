@@ -3,40 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#07111f">
+  <meta name="theme-color" content="#090c0b">
   <meta name="description" content="Monitoramento de desempenho do sistema Gestão de Brindes">
-  <title>Brindes Pulse — Monitoramento</title>
+  <title>Brindes Pulse — Monitoramento do Sistema</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/pulse-futuristic.css">
 </head>
 <body>
-  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
   <main class="shell">
-    <header class="topbar">
-      <a class="brand" href="/" aria-label="Brindes Pulse início"><span class="brand-mark">✦</span><span><strong>Brindes</strong><small> PULSE</small></span></a>
-      <div class="top-actions"><span class="live-dot" aria-hidden="true"></span><span id="poll-label">Monitoramento ao vivo</span><button class="icon-button" id="refresh" title="Atualizar agora" aria-label="Atualizar agora">↻</button></div>
-    </header>
+    <aside class="rail" aria-label="Navegação principal">
+      <a class="brand" href="/" aria-label="Brindes Pulse — início"><span class="brand-mark">BP</span><span class="brand-copy"><strong>BRINDES</strong><small>PULSE / OPS</small></span></a>
+      <nav class="rail-nav" aria-label="Seções do monitor">
+        <a class="rail-link is-active" href="#overview" aria-current="page" aria-label="Visão geral" title="Visão geral">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1"/><rect x="13.5" y="3.5" width="7" height="4" rx="1"/><rect x="13.5" y="10.5" width="7" height="10" rx="1"/><rect x="3.5" y="13.5" width="7" height="7" rx="1"/></svg><span>Visão geral</span>
+        </a>
+        <a class="rail-link" href="#response-time" aria-label="Latência" title="Latência">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l2.3-6 4.2 12 2.4-6H21"/><path d="M4 20h16"/></svg><span>Latência</span>
+        </a>
+        <a class="rail-link" href="#components" aria-label="Componentes" title="Componentes">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="5" rx="1"/><rect x="4" y="11" width="16" height="4" rx="1"/><rect x="4" y="17" width="16" height="3" rx="1"/><path d="M7 6.5h.01M7 13h.01M7 18.5h.01"/></svg><span>Componentes</span>
+        </a>
+      </nav>
+      <div class="rail-foot"><span class="rail-foot-mark" aria-hidden="true"></span><span>MONITOR<br>ATIVO</span></div>
+    </aside>
 
-    <section class="hero">
-      <div><p class="eyebrow">CENTRAL DE OBSERVABILIDADE</p><h1>Visão clara. Operação no ritmo.</h1><p class="hero-copy">Acompanhe a saúde do Gestão de Brindes em tempo real, com sinais simples para agir antes do impacto.</p></div>
-      <div class="hero-status" id="hero-status"><span class="status-orb"></span><div><b id="hero-status-title">Verificando...</b><small id="hero-status-text">Consultando a aplicação</small></div></div>
-    </section>
+    <div class="workspace">
+      <header class="topbar">
+        <div class="page-title"><p class="eyebrow">BRINDES PULSE <span>/</span> SYSTEM MONITOR</p><h1>Monitoramento</h1></div>
+        <div class="top-actions"><span class="live-dot" aria-hidden="true"></span><span id="poll-label">checagem automática</span><button class="icon-button" id="refresh" title="Atualizar agora" aria-label="Atualizar agora"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.7-4L3 10"/><path d="M3 4v6h6M4 13a8 8 0 0 0 14.7 4L21 14"/><path d="M21 20v-6h-6"/></svg></button></div>
+      </header>
 
-    <section class="metrics" aria-label="Métricas principais">
-      <article class="glass metric-card accent-blue"><div class="metric-head"><span>Disponibilidade</span><span class="metric-icon">◉</span></div><strong id="uptime">—</strong><small>últimas verificações</small><div class="progress"><i id="uptime-bar"></i></div></article>
-      <article class="glass metric-card accent-cyan"><div class="metric-head"><span>Latência atual</span><span class="metric-icon">⌁</span></div><strong id="latency">—</strong><small id="latency-copy">tempo de resposta</small><div class="sparkline" id="sparkline"></div></article>
-      <article class="glass metric-card accent-purple"><div class="metric-head"><span>Banco de dados</span><span class="metric-icon">◈</span></div><strong id="database">—</strong><small id="db-copy">estado da conexão</small><div class="status-line"><i id="db-dot"></i><span id="db-line">Aguardando leitura</span></div></article>
-      <article class="glass metric-card accent-amber"><div class="metric-head"><span>Última checagem</span><span class="metric-icon">◷</span></div><strong id="checked">—</strong><small id="checked-copy">horário local</small><div class="status-line"><i class="dot-green"></i><span>Próxima em <b id="next-check">30s</b></span></div></article>
-    </section>
+      <section class="hero" id="overview" aria-labelledby="overview-title">
+        <div class="hero-copy-block"><p class="eyebrow"><span class="eyebrow-square"></span> ESTADO OPERACIONAL <span class="endpoint-tag">GET /api/health</span></p><h2 id="overview-title">Sinais do sistema</h2><p class="hero-copy">Saúde da aplicação, resposta do endpoint e conectividade do banco em uma única leitura.</p></div>
+        <div class="hero-status" id="hero-status" aria-live="polite" aria-atomic="true"><span class="status-orb" aria-hidden="true"></span><div><b id="hero-status-title">Verificando...</b><small id="hero-status-text">Consultando a aplicação</small></div><span class="status-code">SYS / 01</span></div>
+      </section>
 
-    <section class="content-grid">
-      <article class="glass chart-card"><div class="section-heading"><div><p class="eyebrow">PERFORMANCE</p><h2>Tempo de resposta</h2></div><span class="pill" id="chart-range">Sessão atual</span></div><div class="chart-wrap"><canvas id="chart" aria-label="Gráfico de latência das verificações" role="img"></canvas><div class="chart-empty" id="chart-empty">As medições aparecerão aqui</div></div><div class="chart-legend"><span><i class="legend-dot blue"></i> Latência HTTP</span><span id="sample-count">0 amostras</span></div></article>
-      <article class="glass events-card"><div class="section-heading"><div><p class="eyebrow">STATUS</p><h2>Componentes</h2></div><span class="pill pill-ok" id="component-pill">—</span></div><div class="component-list"><div class="component"><span class="component-icon">⌂</span><div><b>Aplicação web</b><small id="app-component">Aguardando verificação</small></div><span class="component-state" id="app-state">—</span></div><div class="component"><span class="component-icon">▦</span><div><b>Banco de dados</b><small id="db-component">Aguardando verificação</small></div><span class="component-state" id="db-state">—</span></div><div class="component"><span class="component-icon">↗</span><div><b>Endpoint público</b><small id="endpoint-component">/api/health</small></div><span class="component-state" id="endpoint-state">—</span></div></div><div class="notice"><span>ℹ</span><p>O painel consulta somente o endpoint público de saúde e não armazena credenciais.</p></div></article>
-    </section>
+      <section class="metrics" aria-label="Métricas principais">
+        <article class="glass metric-card accent-blue"><div class="metric-head"><span>Disponibilidade da sessão</span><span class="metric-index">01</span></div><strong id="uptime">—</strong><small>desde a primeira checagem</small><div class="progress"><i id="uptime-bar"></i></div></article>
+        <article class="glass metric-card accent-cyan"><div class="metric-head"><span>Latência atual</span><span class="metric-index">02</span></div><strong id="latency">—</strong><small id="latency-copy">tempo de resposta observado</small><div class="sparkline" id="sparkline" aria-hidden="true"></div></article>
+        <article class="glass metric-card accent-purple"><div class="metric-head"><span>Banco de dados</span><span class="metric-index">03</span></div><strong id="database">—</strong><small id="db-copy">estado da conexão</small><div class="status-line"><i id="db-dot"></i><span id="db-line">Aguardando leitura</span></div></article>
+        <article class="glass metric-card accent-amber"><div class="metric-head"><span>Última checagem</span><span class="metric-index">04</span></div><strong id="checked">—</strong><small id="checked-copy">horário local</small><div class="status-line"><i class="dot-green"></i><span>Próxima em <b id="next-check">30s</b></span></div></article>
+      </section>
 
-    <footer class="footer"><span>Gestão de Brindes · Brindes Pulse</span><span>Atualização automática a cada 30 segundos</span></footer>
+      <section class="content-grid">
+        <article class="glass chart-card" id="response-time"><div class="section-heading"><div><p class="eyebrow">PERFORMANCE <span>/</span> RESPONSE TIME</p><h2>Latência do endpoint</h2></div><span class="pill" id="chart-range">Sessão · até 12 min</span></div><div class="chart-wrap"><canvas id="chart" aria-label="Gráfico de latência das verificações" role="img"></canvas><div class="chart-empty" id="chart-empty">Aguardando as primeiras medições</div></div><div class="chart-legend"><span><i class="legend-dot blue"></i> Tempo de resposta</span><span id="sample-count">0 amostras</span></div></article>
+        <article class="glass events-card" id="components"><div class="section-heading"><div><p class="eyebrow">HEALTH CHECK <span>/</span> 3 SINAIS</p><h2>Estado por componente</h2></div><span class="pill pill-ok" id="component-pill">—</span></div><div class="component-list"><div class="component"><span class="component-icon">01</span><div><b>Aplicação web</b><small id="app-component">Aguardando verificação</small></div><span class="component-state" id="app-state">—</span></div><div class="component"><span class="component-icon">02</span><div><b>Banco de dados</b><small id="db-component">Aguardando verificação</small></div><span class="component-state" id="db-state">—</span></div><div class="component"><span class="component-icon">03</span><div><b>Endpoint público</b><small id="endpoint-component">/api/health</small></div><span class="component-state" id="endpoint-state">—</span></div></div><div class="notice"><span aria-hidden="true">i</span><p>A disponibilidade é calculada durante esta sessão do painel. O monitor não armazena credenciais.</p></div></article>
+      </section>
+
+      <footer class="footer"><span>BRINDES PULSE <i>/</i> OBSERVABILITY</span><span>Polling a cada 30s <i>·</i> latência medida do navegador ao endpoint</span></footer>
+    </div>
   </main>
   <script src="/app.js"></script>
 </body>
